@@ -68,16 +68,20 @@ WorkingOnApp = (function() {
   };
 })();
 
+
 (function initiateList() {
   WorkingOnApp.add('This is an example of what I am working on.');
 })();
+
 function fetchList() {
   return WorkingOnApp.list();
 }
+
 function createDescriptionSpan(item) {
   var spanDesc = document.createElement('span');
   spanDesc.innerHTML = item.desc;
   spanDesc.classList.add("item-desc");
+  spanDesc.title = "Click to edit me!";
   spanDesc.contentEditable = true;
   spanDesc.onfocus = function(){
     this.classList.add('editing');
@@ -95,10 +99,12 @@ function createDescriptionSpan(item) {
   };
   return spanDesc;
 }
+
 function createExpirationSpan(item) {
   var spanEnds = document.createElement('span');
   spanEnds.innerHTML = item.expirationDate.toDateString();
   spanEnds.classList.add("item-expiration-date");
+  spanEnds.title = "Do not worry about Days: Mon, Tue etc. Just update the date. Click to edit me!";
   spanEnds.contentEditable = true;
   spanEnds.onfocus = function(){
     this.classList.add('editing');
@@ -116,6 +122,7 @@ function createExpirationSpan(item) {
   };
   return spanEnds;
 }
+
 function createDeleteButton(serial) {
   var deleteBtn = document.createElement('button');
   deleteBtn.innerHTML = '-';
@@ -128,6 +135,7 @@ function createDeleteButton(serial) {
   deleteBtn.title = 'Click to delete me!';
   return deleteBtn;
 }
+
 function createLi(item) {
   var li = document.createElement('li');
   spanDesc = createDescriptionSpan(item);
@@ -139,6 +147,7 @@ function createLi(item) {
   li.id = item.serial;
   return li;
 }
+
 function showList() {
   var ul = document.getElementById('list');
   ul.innerHTML = '';
@@ -148,6 +157,7 @@ function showList() {
     ul.appendChild(createLi(list[i]));
   }
 }
+
 function addItem() {
   var desc = document.getElementById('description').value;
   if(desc.length > 0) {
