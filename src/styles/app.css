@@ -26,3 +26,16 @@ li::before{
 .editing {
   border-top: thin solid green;
 }
+
+.info{
+  padding: .2em;
+  margin: .2em;
+  background-color: #666;
+  color: #eee;
+  text-align: center;
+}
+.repo, .app, .author { display: inline-block; width: 23%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.info .repo::before { content: 'repo >'; }
+.info .app::before { content: 'app >'; }
+.info .author:first-child{color: red; content: 'author >'; }
+.info a { color: white; text-decoration: none; border-bottom: thick solid black; }
