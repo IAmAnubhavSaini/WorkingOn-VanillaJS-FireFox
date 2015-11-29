@@ -28,14 +28,21 @@ li::before{
 }
 
 .info{
-  padding: .2em;
-  margin: .2em;
+  padding: .5em;
   background-color: #666;
   color: #eee;
   text-align: center;
 }
-.repo, .app, .author { display: inline-block; width: 23%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
-.info .repo::before { content: 'repo >'; }
-.info .app::before { content: 'app >'; }
-.info .author:first-child{color: red; content: 'author >'; }
-.info a { color: white; text-decoration: none; border-bottom: thick solid black; }
+.repo, .app, .author { display: inline-block; width: 25%; }
+.repo:hover a, .app:hover a, .author:hover a {
+  border-bottom: thin solid red;
+  padding: .2em;
+}
+.repo:hover a:hover, .app:hover a:hover, .author:hover a:hover {
+  border-top: thin solid yellow;
+}
+.info .repo:hover::before { content: 'repo >'; }
+.info .app:hover::before { content: 'app >'; }
+.author { width: 48%; }
+.info .author:hover::before { content: 'author >'; }
+.info a { color: white; text-decoration: none; border-bottom: thin solid black; }
