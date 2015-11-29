@@ -22,3 +22,7 @@ li::before{
   margin: auto 1em;
   color: grey;
 }
+
+.editing {
+  border-top: thin solid green;
+}

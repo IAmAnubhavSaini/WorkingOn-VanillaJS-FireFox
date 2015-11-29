@@ -25,48 +25,6 @@
   </header></header>
   <div id="scripts">
     <script src="./scripts/app.js"></script>
-    <script>
-      (function initiateList(){
-        WorkingOnApp.add('This is an example of what I am working on.');
-      })();
-      function fetchList (){
-        return WorkingOnApp.list();
-      }
-      function showList(){
-        var ul = document.getElementById('list');
-        ul.innerHTML = '';
-        var list = fetchList();
-        var li, spanDesc, spanEnds, deleteBtn;
-        for(var i = list.length-1; i >= 0; i--){
-          li = document.createElement('li');
-          spanDesc = document.createElement('span');
-          spanDesc.innerHTML = list[i].desc;
-          spanDesc.classList.add("item-desc");
-          spanEnds = document.createElement('span');
-          spanEnds.innerHTML = list[i].expirationDate.toDateString();
-          spanEnds.classList.add("item-expiration-date");
-          li.appendChild(spanDesc);
-          li.appendChild(spanEnds);
-          deleteBtn = document.createElement('button');
-          deleteBtn.innerHTML = '-';
-          deleteBtn.onclick = (function(id) {
-            return function(){
-              WorkingOnApp.delete(id);
-              showList();
-            };
-          })(list[i].serial-1);
-          li.appendChild(deleteBtn);
-          li.id = list[i].serial;
-          ul.appendChild(li);
-        }
-      }
-      function addItem(){
-        var desc = document.getElementById('description').value;
-        WorkingOnApp.add(desc);
-        showList();
-      }
-      var items = fetchList();
-    </script>
   </div>
 </body>
 </html>
