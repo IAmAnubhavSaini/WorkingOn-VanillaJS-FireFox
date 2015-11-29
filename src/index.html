@@ -11,13 +11,13 @@
 <body onload="showList()">
   <header>
     <div class="info">
-      <span class="repo">
+      <span class="repo" data-before="repo &gt;">
         <a href="https://github.com/IAmAnubhavSaini/WorkingOn-VanillaJS-FireFox">WorkingOn-VanillaJS-FireFox</a>
       </span>
-      <span class="app">
+      <span class="app" data-before="app &gt;">
         <a href="http://iamanubhavsaini.github.io/WorkingOn-VanillaJS-FireFox/src/index.html">online application (github io)</a>
       </span>
-      <span class="author">
+      <span class="author" data-before="author &gt;">
         <a href="https://github.com/IAmAnubhavSaini">gh/IAmAnubhavSaini</a>
         <a href="https://iamanubhavsaini.github.io/">site</a>
         <a href="https://twitter.com/IAmAnubhavSaini/">t/IamAnubhavSaini</a>
@@ -29,8 +29,8 @@
   <section>
     <div id="app-container">
       <div id="mock-form">
-        <input type="text" id="description" name="description" />
-        <button onclick="addItem();">Add</button>
+        <input type="text" id="description" name="description" placeholder="What are you working on?"/>
+        <button onclick="addItem();">Enlist</button>
       </div> <!-- #mock-form -->
       <ul id="list">
       <ul>

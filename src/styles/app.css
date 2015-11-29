@@ -1,6 +1,17 @@
+header, section {
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+#mock-form input[id="description"], #mock-form button{
+  padding: 1em;
+  width: 45%;
+}
+#mock-form button{ width: 10%; }
+
 #list{
+  margin: 4% 10%;
   list-style: none;
-  width: 40%;
 }
 
 li{
@@ -8,7 +19,7 @@ li{
   margin: 1em 0;
 }
 li:hover {
-  border-bottom: thin solid #000;
+  border-bottom: thin solid rgba(255, 0, 0, 0.4);
 }
 
 li::before{
@@ -29,11 +40,18 @@ li::before{
 
 .info{
   padding: .5em;
-  background-color: #666;
+  background-color: #999;
   color: #eee;
   text-align: center;
 }
 .repo, .app, .author { display: inline-block; width: 25%; }
+.author { width: 48%; }
+
+.repo:hover, .app:hover, .author:hover {
+  border-right: thin solid white;
+  border-left: thin solid white;
+}
+
 .repo:hover a, .app:hover a, .author:hover a {
   border-bottom: thin solid red;
   padding: .2em;
@@ -41,8 +59,7 @@ li::before{
 .repo:hover a:hover, .app:hover a:hover, .author:hover a:hover {
   border-top: thin solid yellow;
 }
-.info .repo:hover::before { content: 'repo >'; }
-.info .app:hover::before { content: 'app >'; }
-.author { width: 48%; }
-.info .author:hover::before { content: 'author >'; }
-.info a { color: white; text-decoration: none; border-bottom: thin solid black; }
+
+.repo:hover::before, .app:hover::before, .author:hover::before { content: attr(data-before); }
+
+.info a { color: black; text-decoration: none; border-bottom: thin solid white; }
