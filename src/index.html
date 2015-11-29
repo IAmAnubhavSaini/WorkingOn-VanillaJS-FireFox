@@ -4,19 +4,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta author="Anubhav Saini <IAmAnubhavSaini@GMail.com>" />
   <title>Working-On App - Vanilla JS version - For FireFox</title>
   <link href="./styles/app.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body onload="showList()">
   <header>
     <h1>Working On</h1>
   </header>
   <section>
     <div id="app-container">
-      <form action="#">
+      <div id="mock-form">
         <input type="text" id="description" name="description" />
-        <button type="submit">Add</button>
-      </form>
+        <button onclick="addItem();">Add</button>
+      </div> <!-- #mock-form -->
       <ul id="list">
       <ul>
     </div>
@@ -25,9 +26,46 @@
   <div id="scripts">
     <script src="./scripts/app.js"></script>
     <script>
-      WorkingOnApp.addItem('This is an example of what I am working on.');
-      var items = [];
-      var items = WorkingOnApp.listItems(items);
+      (function initiateList(){
+        WorkingOnApp.add('This is an example of what I am working on.');
+      })();
+      function fetchList (){
+        return WorkingOnApp.list();
+      }
+      function showList(){
+        var ul = document.getElementById('list');
+        ul.innerHTML = '';
+        var list = fetchList();
+        var li, spanDesc, spanEnds, deleteBtn;
+        for(var i = list.length-1; i >= 0; i--){
+          li = document.createElement('li');
+          spanDesc = document.createElement('span');
+          spanDesc.innerHTML = list[i].desc;
+          spanDesc.classList.add("item-desc");
+          spanEnds = document.createElement('span');
+          spanEnds.innerHTML = list[i].expirationDate.toDateString();
+          spanEnds.classList.add("item-expiration-date");
+          li.appendChild(spanDesc);
+          li.appendChild(spanEnds);
+          deleteBtn = document.createElement('button');
+          deleteBtn.innerHTML = '-';
+          deleteBtn.onclick = (function(id) {
+            return function(){
+              WorkingOnApp.delete(id);
+              showList();
+            };
+          })(list[i].serial-1);
+          li.appendChild(deleteBtn);
+          li.id = list[i].serial;
+          ul.appendChild(li);
+        }
+      }
+      function addItem(){
+        var desc = document.getElementById('description').value;
+        WorkingOnApp.add(desc);
+        showList();
+      }
+      var items = fetchList();
     </script>
   </div>
 </body>

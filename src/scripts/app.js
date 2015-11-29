@@ -14,6 +14,7 @@ WorkingOnApp = (function(){
     self.serial = list.length + 1;
     self.priority = 0;
     self.expirationDate = addDays(self.added, 1);
+    self.isDeleted = false;
     return self;
   };
 
@@ -27,7 +28,8 @@ WorkingOnApp = (function(){
 
   var deleteItem = function(serial){
     if(serial >= 0 && serial < list.length){
-      return list.splice(serial, 1);
+      list[serial].isDeleted = true;
+      return;
     }
     console.log('Not able to remove [' + serial + '] from list at deleteItem');
     throw new Error('Not able to remove [' + serial + '] from list at deleteItem');
@@ -46,7 +48,7 @@ WorkingOnApp = (function(){
     items = items || [];
     var now = new Date();
     for(var i = 0; i < list.length; i++){
-      if(list[i].expirationDate > now){
+      if(list[i].expirationDate > now && !list[i].isDeleted){
         items.push(list[i]);
       }
     }
@@ -54,8 +56,9 @@ WorkingOnApp = (function(){
   };
 
   return {
-    addItem: addItem,
-    deleteItem: deleteItem,
-    updateExpiration: updateExpiration
+    add: addItem,
+    delete: deleteItem,
+    updateExpiration: updateExpiration,
+    list: listItems
   };
 })();
